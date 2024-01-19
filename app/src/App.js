@@ -53,7 +53,7 @@ function App() {
         </div>
         <div className="mt-2 has-text-centered">
           <button
-            className="button is-normal is-secondary is-rounded"
+            className="button is-info is-light is-rounded"
             onClick={addNewSnippet}
           >
             <b>+</b>
