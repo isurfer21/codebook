@@ -27,7 +27,7 @@ if (!!argv.dev) {
     createProxyMiddleware({ target: appServerUrl, changeOrigin: true })
   );
 } else {
-  app.use("/", express.static(path.join("codebook", "build")));
+  app.use("/", express.static(path.join("app", "build")));
 }
 
 // Start the server
