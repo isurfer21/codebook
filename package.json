@@ -1,0 +1,25 @@
+{
+  "name": "codebook",
+  "version": "1.0.0",
+  "description": "A web-based interface to coding environments for any programming languages.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "app-dev": "cd app && npm start",
+    "app-build": "cd app && npm run build",
+    "api-dev": "node index.js --dev",
+    "api-watch": "nodemon -w api index.js --dev",
+    "dev": "concurrently 'npm:api-watch' 'npm:app-dev'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abhishek Kumar",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6",
+    "minimist": "^1.2.8",
+    "nodemon": "^3.0.3",
+    "stripcolorcodes": "^0.1.0"
+  }
+}
