@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 
 function Snippet({ id, trait, onChange, onTrash }) {
+  const textareaRef = useRef(null);
+
   const [codeText, setCodeText] = useState(trait.code || "");
   const [codeLang, setCodeLang] = useState(trait.lang || "");
   const [codeFile, setCodeFile] = useState(trait.file || "");
@@ -26,14 +28,14 @@ function Snippet({ id, trait, onChange, onTrash }) {
       })
       .catch((error) => {
         console.error(error);
-        setOutput(error.response.data.error);
+        setOutput(error.response.data?.error || error.response.data);
       });
-    reviseTrait();
+    save();
   };
 
   const handleClickTrash = () => onTrash(id);
 
-  const reviseTrait = () =>
+  const save = () =>
     onChange(id, {
       code: codeText,
       lang: codeLang,
@@ -42,15 +44,20 @@ function Snippet({ id, trait, onChange, onTrash }) {
     });
 
   return (
-    <section className="section mt-3 has-background-primary-light">
+    <section className="section mt-3 p-5 mdl-card mdl-card-1">
       <textarea
+        ref={textareaRef}
         name="code"
         cols="30"
         rows="10"
         className="textarea"
         value={codeText}
+        placeholder={
+          codeLang ? `Enter the ${codeLang} code.` : `Select a language.`
+        }
         onChange={handleChangeCodeText}
-      ></textarea>
+        spellCheck="false"
+      />
       <div className="my-0 columns">
         <div className="column">
           <input
@@ -62,16 +69,23 @@ function Snippet({ id, trait, onChange, onTrash }) {
           />
         </div>
         <div className="column">
-          <button className="button is-small is-primary" onClick={handleClickRun}>
+          <button
+            className="button is-small is-primary"
+            onClick={handleClickRun}
+          >
             ►
           </button>
-          <button className="button is-small is-warning ml-2" onClick={handleClickTrash}>
+          <button
+            className="button is-small is-warning ml-2"
+            onClick={handleClickTrash}
+          >
             🗑
           </button>
         </div>
         <div className="column">
           <div className="select is-small is-pulled-right">
             <select onChange={handleChangeCodeLang} defaultValue={codeLang}>
+              <option value="">Select language</option>
               <option value="php">PHP</option>
               <option value="js">JavaScript</option>
               <option value="node">Node.js</option>
@@ -81,9 +95,9 @@ function Snippet({ id, trait, onChange, onTrash }) {
           </div>
         </div>
       </div>
-      <div className="">
-        <pre>
-          <code>{output}</code>
+      <div>
+        <pre className="bg-slate-900 text-white rounded text-sm">
+          <code>{output || "Not available"}</code>
         </pre>
       </div>
     </section>

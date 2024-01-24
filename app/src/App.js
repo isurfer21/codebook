@@ -21,6 +21,10 @@ function App() {
     setSnippets([...snippets, snippet]);
   };
 
+  const addNewMarkdown = ()  => {
+
+  };
+
   const id = useId();
 
   const updateSnippet = (index, snippet) => {
@@ -34,7 +38,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="bg-slate-50">
       <Header />
       <div className="container is-widescreen">
         <div>
@@ -53,15 +57,21 @@ function App() {
         </div>
         <div className="mt-2 has-text-centered">
           <button
-            className="button is-info is-light is-rounded"
+            className="button is-info is-small is-light is-rounded"
             onClick={addNewSnippet}
           >
-            <b>+</b>
+            <b>+</b>&nbsp;Code
+          </button>
+          <button
+            className="button is-info is-small is-light is-rounded ml-2"
+            onClick={addNewMarkdown}
+          >
+            <b>+</b>&nbsp;Markdown
           </button>
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
