@@ -4,7 +4,14 @@ import Header from "./com/Header";
 import Snippet from "./com/Snippet";
 import Footer from "./com/Footer";
 
+const MarkdownModel = {
+  type: "md",
+  code: "",
+  lang: "markdown",
+}
+
 const SnippetModel = {
+  type: "code",
   code: "",
   lang: "",
   file: "",
@@ -22,7 +29,8 @@ function App() {
   };
 
   const addNewMarkdown = ()  => {
-
+    const snippet = { ...MarkdownModel };
+    setSnippets([...snippets, snippet]);
   };
 
   const id = useId();
