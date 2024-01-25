@@ -104,7 +104,11 @@ function Snippet({ id, trait, onChange, onTrash }) {
                 <select onChange={handleChangeCodeLang} defaultValue={codeLang}>
                   <option value="">Select language</option>
                   {Object.keys(languages).map((key) => {
-                    return <option key={key} value={key}>{languages[key]}</option>;
+                    return (
+                      <option key={key} value={key}>
+                        {languages[key]}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
