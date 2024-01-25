@@ -1,5 +1,5 @@
 {
-  "name": "code-book",
+  "name": "codebuk",
   "version": "1.0.0",
   "description": "A web-based interface to coding environments for any programming languages.",
   "main": "index.js",
@@ -24,6 +24,6 @@
     "stripcolorcodes": "^0.1.0"
   },
   "bin": {
-    "code-book": "index.js"
+    "codebuk": "index.js"
   }
 }
