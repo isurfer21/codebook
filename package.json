@@ -1,5 +1,5 @@
 {
-  "name": "codebook",
+  "name": "code-book",
   "version": "1.0.0",
   "description": "A web-based interface to coding environments for any programming languages.",
   "main": "index.js",
@@ -10,7 +10,8 @@
     "api-dev": "node index.js --dev",
     "api-watch": "nodemon -w api index.js --dev",
     "dev": "concurrently 'npm:api-watch' 'npm:app-dev'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd app && npm install && npm run build"
   },
   "author": "Abhishek Kumar",
   "license": "MIT",
@@ -21,5 +22,8 @@
     "minimist": "^1.2.8",
     "nodemon": "^3.0.3",
     "stripcolorcodes": "^0.1.0"
+  },
+  "bin": {
+    "code-book": "index.js"
   }
 }

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Import required modules
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
@@ -14,14 +16,15 @@ const app = express();
 // Middleware setup
 app.use(express.json());
 
-// Server port
+// Server config
+const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 4000;
 
 app.post("/api/run", codeRunner);
 
 if (!!argv.dev) {
-  // Proxy server
-  const appServerUrl = "http://localhost:3000";
+  // Proxy dev server
+  const appServerUrl = `http://${host}:3000`;
   app.use(
     ["/", "/static/*"],
     createProxyMiddleware({ target: appServerUrl, changeOrigin: true })
@@ -31,6 +34,6 @@ if (!!argv.dev) {
 }
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(port, host, () => {
+  console.log(`Server is running at ${host}:${port}`);
 });
