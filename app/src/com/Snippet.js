@@ -2,6 +2,18 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import Markdown from "react-markdown";
 
+const languages = {
+  php: "PHP",
+  js: "JavaScript",
+  node: "Node.js",
+  go: "Go",
+  java: "Java",
+  py: "Python",
+  lua: "Lua",
+  wren: "Wren",
+  rs: "Rust",
+};
+
 function Snippet({ id, trait, onChange, onTrash }) {
   const textareaRef = useRef(null);
 
@@ -96,11 +108,9 @@ function Snippet({ id, trait, onChange, onTrash }) {
               <div className="select is-small is-pulled-right">
                 <select onChange={handleChangeCodeLang} defaultValue={codeLang}>
                   <option value="">Select language</option>
-                  <option value="php">PHP</option>
-                  <option value="js">JavaScript</option>
-                  <option value="node">Node.js</option>
-                  <option value="go">Go</option>
-                  <option value="java">Java</option>
+                  {Object.keys(languages).map(key => {
+                    return <option value={key}>{languages[key]}</option>;
+                  })}
                 </select>
               </div>
             </div>
