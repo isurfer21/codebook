@@ -31,6 +31,8 @@ To start the application in **development** mode, run this command:
 npm run dev
 ```
 
+To support more languages, create another object inside `language-config.json` for the new language along with the command-line syntax to compile or interpret the script or program.
+
 ### Troubleshoot
 
 Normally, installation process also generate the production build of the App. However, if the `./app/build` directory does not exist, run the following command to create it:
