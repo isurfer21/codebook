@@ -4,6 +4,7 @@
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const codeRunner = require("./api/code-runner");
+const codeLanguages = require("./api/code-languages");
 const minimist = require("minimist");
 const path = require("path");
 
@@ -21,6 +22,7 @@ const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 4000;
 
 app.post("/api/run", codeRunner);
+app.get("/api/langs", codeLanguages);
 
 if (!!argv.dev) {
   // Proxy dev server

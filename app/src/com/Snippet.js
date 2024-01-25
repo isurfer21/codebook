@@ -1,22 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Markdown from "react-markdown";
-
-const languages = {
-  php: "PHP",
-  js: "JavaScript",
-  node: "Node.js",
-  go: "Go",
-  java: "Java",
-  py: "Python",
-  lua: "Lua",
-  wren: "Wren",
-  rs: "Rust",
-};
 
 function Snippet({ id, trait, onChange, onTrash }) {
   const textareaRef = useRef(null);
 
+  const [languages, setLanguages] = useState({});
   const [codeType, setCodeType] = useState(trait.type || "");
   const [codeText, setCodeText] = useState(trait.code || "");
   const [codeLang, setCodeLang] = useState(trait.lang || "");
@@ -63,6 +52,12 @@ function Snippet({ id, trait, onChange, onTrash }) {
 
   const handleBlurTextarea = () => setMarkedEditor(false);
 
+  useEffect(() => {
+    fetch("/api/langs")
+      .then((response) => response.json())
+      .then((data) => setLanguages(data.output));
+  }, []);
+
   return (
     <section className="section mt-3 p-5 mdl-card mdl-card-1">
       {codeType === "code" ? (
@@ -108,8 +103,8 @@ function Snippet({ id, trait, onChange, onTrash }) {
               <div className="select is-small is-pulled-right">
                 <select onChange={handleChangeCodeLang} defaultValue={codeLang}>
                   <option value="">Select language</option>
-                  {Object.keys(languages).map(key => {
-                    return <option value={key}>{languages[key]}</option>;
+                  {Object.keys(languages).map((key) => {
+                    return <option key={key} value={key}>{languages[key]}</option>;
                   })}
                 </select>
               </div>

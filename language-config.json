@@ -1,0 +1,62 @@
+{
+  "node.js": {
+    "label": "Node.js",
+    "name": "node.js",
+    "ext": "js",
+    "cmd": "node <FILE_PATH>"
+  },
+  "javascript": {
+    "label": "JavaScript",
+    "name": "javascript",
+    "ext": "js",
+    "cmd": "node <FILE_PATH>"
+  },
+  "php": {
+    "label": "PHP",
+    "name": "php",
+    "ext": "php",
+    "cmd": "php <FILE_PATH>"
+  },
+  "go": {
+    "label": "Go",
+    "name": "go",
+    "ext": "go",
+    "cmd": "go run <FILE_PATH>"
+  },
+  "java": {
+    "label": "Java",
+    "name": "java",
+    "ext": "java",
+    "cmd": "javac <FILE_PATH> && cd <BASE_DIR> && java <BASE_FILE>"
+  },
+  "python": {
+    "label": "Python",
+    "name": "python",
+    "ext": "py",
+    "cmd": "python <FILE_PATH>"
+  },
+  "python3": {
+    "label": "Python3",
+    "name": "python",
+    "ext": "py",
+    "cmd": "python3 <FILE_PATH>"
+  },
+  "lua": {
+    "label": "Lua",
+    "name": "lua",
+    "ext": "lua",
+    "cmd": "lua <FILE_PATH>"
+  },
+  "wren": {
+    "label": "Wren",
+    "name": "wren",
+    "ext": "wren",
+    "cmd": "wren <FILE_PATH>"
+  },
+  "rust": {
+    "label": "Rust",
+    "name": "rust",
+    "ext": "rs",
+    "cmd": "rustc <FILE_PATH> && cd <BASE_DIR> && <BASE_FILE>"
+  }
+}
